@@ -1,0 +1,7 @@
+C:\Users\Аида\source\repos\КМП-алгоритм\КМП-алгоритм\bin\Debug\КМП-алгоритм.exe.config
+C:\Users\Аида\source\repos\КМП-алгоритм\КМП-алгоритм\bin\Debug\КМП-алгоритм.exe
+C:\Users\Аида\source\repos\КМП-алгоритм\КМП-алгоритм\bin\Debug\КМП-алгоритм.pdb
+C:\Users\Аида\source\repos\КМП-алгоритм\КМП-алгоритм\obj\Debug\КМП-алгоритм.csprojAssemblyReference.cache
+C:\Users\Аида\source\repos\КМП-алгоритм\КМП-алгоритм\obj\Debug\КМП-алгоритм.csproj.CoreCompileInputs.cache
+C:\Users\Аида\source\repos\КМП-алгоритм\КМП-алгоритм\obj\Debug\КМП-алгоритм.exe
+C:\Users\Аида\source\repos\КМП-алгоритм\КМП-алгоритм\obj\Debug\КМП-алгоритм.pdb
