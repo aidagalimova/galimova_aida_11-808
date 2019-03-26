@@ -1,0 +1,7 @@
+C:\Users\Аида\source\repos\linqKR\linqKR\bin\Debug\linqKR.exe.config
+C:\Users\Аида\source\repos\linqKR\linqKR\bin\Debug\linqKR.exe
+C:\Users\Аида\source\repos\linqKR\linqKR\bin\Debug\linqKR.pdb
+C:\Users\Аида\source\repos\linqKR\linqKR\obj\Debug\linqKR.csprojAssemblyReference.cache
+C:\Users\Аида\source\repos\linqKR\linqKR\obj\Debug\linqKR.csproj.CoreCompileInputs.cache
+C:\Users\Аида\source\repos\linqKR\linqKR\obj\Debug\linqKR.exe
+C:\Users\Аида\source\repos\linqKR\linqKR\obj\Debug\linqKR.pdb
