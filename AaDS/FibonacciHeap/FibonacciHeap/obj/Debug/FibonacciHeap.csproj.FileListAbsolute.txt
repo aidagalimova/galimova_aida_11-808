@@ -1,0 +1,7 @@
+C:\Users\Аида\source\repos\FibonacciHeap\FibonacciHeap\obj\Debug\FibonacciHeap.csprojAssemblyReference.cache
+C:\Users\Аида\source\repos\FibonacciHeap\FibonacciHeap\obj\Debug\FibonacciHeap.csproj.CoreCompileInputs.cache
+C:\Users\Аида\source\repos\FibonacciHeap\FibonacciHeap\bin\Debug\FibonacciHeap.exe.config
+C:\Users\Аида\source\repos\FibonacciHeap\FibonacciHeap\bin\Debug\FibonacciHeap.exe
+C:\Users\Аида\source\repos\FibonacciHeap\FibonacciHeap\bin\Debug\FibonacciHeap.pdb
+C:\Users\Аида\source\repos\FibonacciHeap\FibonacciHeap\obj\Debug\FibonacciHeap.exe
+C:\Users\Аида\source\repos\FibonacciHeap\FibonacciHeap\obj\Debug\FibonacciHeap.pdb
