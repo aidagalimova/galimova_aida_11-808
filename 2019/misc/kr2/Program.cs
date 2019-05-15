@@ -22,6 +22,7 @@ namespace kr
         static void Main(string[] args)
         {
             Solve();
+            Solve2();
         }
 
         public static void Solve()
@@ -38,6 +39,16 @@ namespace kr
             int ans = (lst.Where((item, index) => index % 2 == 0)).Sum(a => a.body.Length);
 
             Console.WriteLine(ans);
+        }
+
+        public static void Solve2()
+        {
+            string folder = @"D:\Temp";
+            DirectoryInfo dir = new DirectoryInfo(folder);
+            foreach (var item in dir.GetDirectories())
+            {
+                string[] files = Directory.GetFiles(folder + "\\" + item.Name);
+            }
         }
     }
 }
