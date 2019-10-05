@@ -13,7 +13,7 @@ namespace bd
     {
         static void Main(string[] args)
         {
-            string url = "http://study.istamendil.info";
+            string url = "";
             string html = GetHTMLPage(url);
             var urls = ParsePageUrl(html, url);
             int i = 0;
