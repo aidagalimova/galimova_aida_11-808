@@ -36,11 +36,12 @@ namespace posts
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapGet("/", new HomeController().GetForm);
-				endpoints.MapPost("/Home/AddEntry", new HomeController().AddEntry);
+				endpoints.MapPost("/Home/AddEntry", new HomeController().AddBlogEntry);
 				endpoints.MapGet("/GetPosts", new HomeController().GetPosts);
 				endpoints.MapGet("/Remove", new HomeController().RemovePost);
 				endpoints.MapGet("/Edit", new HomeController().EditPost);
 				endpoints.MapPost("/SavePost", new HomeController().SavePost);
+				endpoints.MapPost("/AddComment", new HomeController().AddComment);
 			});
 
 		}

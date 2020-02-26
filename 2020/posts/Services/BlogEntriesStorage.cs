@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace posts
 {
-	public class BlogEntriesStorage
+	public class BlogEntriesStorage : IStorage<BlogEntry>
 	{
+		private CommentEntriesStorage commentEntriesStorage = new CommentEntriesStorage();
+
 		public List<BlogEntry> Load()
 		{
 			var config = new System.Globalization.CultureInfo("ru");
@@ -19,6 +21,27 @@ namespace posts
 			{
 				//каждую строку csv файла преобразовать в BlogEntry добавить в список
 				BlogEntries = csv.GetRecords<BlogEntry>().ToList();
+			}
+			foreach(var blogEntry in BlogEntries)
+			{
+				blogEntry.CommentEntries = new List<CommentEntry>();
+			}
+			var comments = commentEntriesStorage.Load();
+			//сопоставить посты с их комментариями
+			foreach (var comment in comments)
+			{
+				foreach (var post in BlogEntries)
+				{
+					if (comment.BlogEntryId == post.Id)
+					{
+						post.CommentEntries.Add(comment);
+						break;
+					}
+				}
+			}
+			if (BlogEntries.Count != 0)
+			{
+				BlogEntry.LastId = BlogEntries.Last().Id + 1;
 			}
 			return BlogEntries;
 		}
@@ -31,10 +54,7 @@ namespace posts
 			using (var writer = new StreamWriter(fileStream))
 			using (var csv = new CsvWriter(writer, config))
 			{
-				csv.WriteField(entity.Name);
-				csv.WriteField(entity.Text);
-				csv.WriteField(entity.CurrentTime);
-				csv.WriteField(entity.FileName);
+				csv.WriteRecord(entity);
 				csv.NextRecord();
 			}
 		}
@@ -42,14 +62,32 @@ namespace posts
 		public void Remove(int id)
 		{
 			var posts = Load();
-			posts.RemoveAt(id);
-
+			foreach(var post in posts)
+			{
+				if(post.Id == id)
+				{
+					foreach(var comment in post.CommentEntries)
+					{
+						commentEntriesStorage.Remove(comment.Id);
+					}
+					posts.Remove(post);
+					break;
+				}
+			}
 			RewriteCSVFile(posts);
 		}
 		public void Edit(int id, BlogEntry blogEntry)
 		{
 			var posts = Load();
-			posts[id] = blogEntry;
+			foreach(var post in posts)
+			{
+				if(post.Id == id)
+				{
+					//заменить пост на новый
+					posts[posts.IndexOf(post)] = blogEntry;
+					break;
+				}
+			}
 			
 			RewriteCSVFile(posts);
 		}
@@ -65,13 +103,19 @@ namespace posts
 				csv.NextRecord();
 				foreach (var entity in posts)
 				{
-					csv.WriteField(entity.Name);
-					csv.WriteField(entity.Text);
-					csv.WriteField(entity.CurrentTime);
-					csv.WriteField(entity.FileName);
+					csv.WriteRecord(entity);
 					csv.NextRecord();
 				}
 			}
+		}
+		public BlogEntry GetPostById(int id)
+		{
+			var posts = Load();
+			foreach(var post in posts)
+			{
+				if (post.Id == id) return post;
+			}
+			throw new KeyNotFoundException();
 		}
 	}
 }
