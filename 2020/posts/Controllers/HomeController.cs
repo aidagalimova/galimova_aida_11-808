@@ -22,8 +22,16 @@ namespace posts
 		public async Task AddBlogEntry(HttpContext context)
 		{
 			var entity = CreateBlogEntity(context);
-			BlogEntriesStorage.Save(entity);
-			await context.Response.WriteAsync("Post added");
+			ValidationResult validationResult = new Validation().Validate(entity);
+			if (!validationResult.IsValid)
+			{
+				await context.Response.WriteAsync(GetHtmlPostError(validationResult.ErrMsg));
+			}
+			else
+			{
+				BlogEntriesStorage.Save(entity);
+				await context.Response.WriteAsync("Post added");
+			}
 		}
 
 		public async Task GetPosts(HttpContext context)
@@ -134,9 +142,39 @@ namespace posts
 				}
 			}
 			entity.FileName = fileName;
-			//изменить csv файл
-			BlogEntriesStorage.Edit(id, entity);
-			context.Response.Redirect("/GetPosts");
+			var validationResult = new Validation().Validate(entity);
+			if (!validationResult.IsValid)
+			{
+				await context.Response.WriteAsync(GetHtmlPostError(validationResult.ErrMsg));
+			}
+			else
+			{
+				//изменить csv файл
+				BlogEntriesStorage.Edit(id, entity);
+				context.Response.Redirect("/GetPosts");
+			}
+		}
+
+		private static string GetHtmlPostError(string errorMessage)
+		{
+			return $@"<!DOCTYPE html><html><head>
+		<meta charset = ""utf-8""/>
+		<title> Create new post</title>
+		</head>
+		<body>
+		<span>{errorMessage}</span>
+		<form action = ""/home/AddEntry"" method=""post"" enctype=""multipart/form-data"">
+		<input name = ""name""/>
+		<br/>
+	    <textarea name = ""text"" ></textarea>
+	    <br/>
+	    <input id=""photo"" name=""image"" type = ""file"" accept = ""image/*"" />
+		<br/>
+	    <input type = ""submit""/>
+		</form>
+		<a type = 'button' href='GetPosts/'> Все посты </a>
+		</body>
+		</html>";
 		}
 
 		private static BlogEntry CreateBlogEntity(HttpContext context)
@@ -165,6 +203,7 @@ namespace posts
 				FileName = fileName,
 				CommentEntries = new List<CommentEntry>()
 			};
+
 			return entity;
 		}
 	}
