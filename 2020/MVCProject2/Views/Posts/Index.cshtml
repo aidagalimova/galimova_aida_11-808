@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MVCProject2.Models.Post>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Posts</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h2>@Html.DisplayFor(modelItem => item.PostName)</h2>
+        <br>
+        @if(item.Text != "")
+        {
+        @Html.DisplayFor(modelItem => item.Text)
+        <br>
+        }
+        @if(item.FileName != "")
+        {
+        <img src="@Url.Content("/Files/" + item.FileName)" alt="IMAGES" />
+        <br>
+        }
+        <h5>Author</h5>
+        @Html.DisplayFor(modelItem => item.User.UserName)
+        <br>
+        <h5>Date</h5>
+        @Html.DisplayFor(modelItem => item.CurrentTime)
+        <br>
+        @if(item.EditingTime != DateTime.MinValue)
+        {
+        <h6>Edit Date</h6>
+        @Html.DisplayFor(modelItem => item.EditingTime)
+        <br />
+        }
+        <a href="/Posts/Edit/@Html.DisplayFor(modelItem => item.PostId)">Edit Post</a>
+        <br />
+        <a href="/Posts/Delete/@Html.DisplayFor(modelItem => item.PostId)">Delete Post</a>
+        <hr>
+    </div>
+    <h4>Comments</h4>
+    @if (item.Comment != null)
+    {
+        @foreach (var comment in item.Comment)
+        {
+            @Html.DisplayFor(modelItem => comment.CommentText);
+            <br>
+            <h5>Author</h5>
+            @Html.DisplayFor(modelItem => comment.User.UserName);
+            <br>
+            <h5>Date</h5>
+            @Html.DisplayFor(modelItem => comment.CurrentTime);
+            <br>
+            @if ((DateTime.Now - comment.CurrentTime).TotalMinutes < 15)
+            {
+                <a href="/Comments/Edit/@Html.DisplayFor(modelItem => comment.CommentId)">Edit comment</a>
+            }
+            <br>
+            <a href="/Comments/Delete/@Html.DisplayFor(modelItem => comment.CommentId)">Delete comment</a>
+            <hr>
+        }
+    }
+    <a href="/Comments/Create?PostId=@Html.DisplayFor(modelItem => item.PostId)">Add comment</a>
+}
+<br>
+<a href="/Posts/Create">Add Posts</a>
+

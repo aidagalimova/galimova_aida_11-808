@@ -1,0 +1,48 @@
+﻿@model MVCProject2.Models.Post
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PostName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CurrentTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PostId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
