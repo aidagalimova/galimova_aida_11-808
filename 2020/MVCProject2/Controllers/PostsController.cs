@@ -15,7 +15,7 @@ using MVCProject2.Models;
 
 namespace MVCProject2.Controllers
 {
-
+    [CustomAuthFilter]
     public class PostsController : Controller
     {
         private readonly ApplicationContext _context;

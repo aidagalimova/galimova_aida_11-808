@@ -50,6 +50,10 @@ namespace MVCProject2.Controllers
                         IsEssential = true
                     };
                     Response.Cookies.Append("UserId", t.UserId.ToString(), cookieOptions);
+                    if(t.Login == "admin")
+                    {
+                        Response.Cookies.Append("admin", t.UserId.ToString(), cookieOptions);
+                    }
                     Console.WriteLine(Request.Cookies["UserId"]);
                     return RedirectPermanent("Details/"+t.UserId);
                 }
@@ -72,6 +76,7 @@ namespace MVCProject2.Controllers
 
 
         // GET: Users/Details/5
+        [CustomAuthFilter]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

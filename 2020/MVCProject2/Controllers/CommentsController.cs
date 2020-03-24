@@ -13,6 +13,7 @@ using MVCProject2.Models;
 namespace MVCProject2.Controllers
 {
  
+    [CustomAuthFilter]
     public class CommentsController : Controller
     {
         private readonly ApplicationContext _context;
@@ -116,6 +117,7 @@ namespace MVCProject2.Controllers
         }
 
         // GET: Comments/Delete/5
+        [isAdminFilter]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
