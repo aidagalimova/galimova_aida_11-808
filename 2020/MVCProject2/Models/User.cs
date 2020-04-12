@@ -1,17 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCProject2.Models
 {
-    public class User
+    [NotMapped]
+    public class User : IdentityUser
     {
-        public int UserId { get; set; }
-
-        public string Login { get; set; }
-
-        public string Password { get; set; }
-
-        public string UserName { get; set; }
-
         public ICollection<Post> Post { get; set; }
 
         public ICollection<Comment> Comment { get; set; }

@@ -19,7 +19,7 @@ namespace MVCProject2.Infrastructure
         {
             if (!context.HttpContext.Request.Cookies.ContainsKey("UserId"))
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Users" }, { "Action", "Login" } });
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "Controller", "Account" }, { "Action", "Login" } });
             }
             base.OnActionExecuting(context);
         }

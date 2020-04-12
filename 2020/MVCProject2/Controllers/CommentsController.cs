@@ -45,7 +45,7 @@ namespace MVCProject2.Controllers
         {
             if (ModelState.IsValid)
             {
-                comment.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
+                comment.UserId = Request.Cookies["UserId"];
                 comment.PostId = Convert.ToInt32(Request.Cookies["PostId"]);
                 comment.CurrentTime = DateTime.Now;
                 _context.Add(comment);

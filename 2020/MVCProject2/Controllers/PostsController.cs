@@ -69,7 +69,7 @@ namespace MVCProject2.Controllers
         public async Task<IActionResult> Create([Bind("PostName,Text")] Post post, IFormFile upload)
         {
             post.CurrentTime = DateTime.Now;
-            post.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
+            post.UserId = Request.Cookies["UserId"];
             post.FileName = "";
             if (upload != null)
             {
@@ -121,7 +121,7 @@ namespace MVCProject2.Controllers
             }
             post.EditingTime = DateTime.Now;
             post.FileName = "";
-            post.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
+            post.UserId = Request.Cookies["UserId"];
             post.CurrentTime = _context.Posts.AsNoTracking().Where(p => p.PostId == id).FirstOrDefault().CurrentTime;
             if (upload != null)
             {

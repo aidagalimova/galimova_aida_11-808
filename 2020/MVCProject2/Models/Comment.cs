@@ -12,7 +12,7 @@ namespace MVCProject2.Models
         [DataType(DataType.DateTime)]
         public DateTime CurrentTime { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
 
 

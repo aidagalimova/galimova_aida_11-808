@@ -10,7 +10,7 @@ namespace MVCProject2.Models
 
 		public string PostName { get; set; }
 
-		public int UserId { get; set; }
+		public string UserId { get; set; }
 		public User User { get; set; }
 
 		public string Text { get; set; }
